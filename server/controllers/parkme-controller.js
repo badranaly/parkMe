@@ -3,8 +3,8 @@ const parkmeDB = require('../models/parkme-DB');
 
 module.exports = {
   createUser(req, res){
-    console.log('inside controller', req.body);
-    parkmeDB.create(req.body)
+    console.log('inside controller', req.body.userData);
+    parkmeDB.create(req.body.userData)
     .then(results => {
       res.json({
         message: 'ok',
@@ -12,12 +12,13 @@ module.exports = {
       })
     })
     .catch(err => {
+      console.log(err);
       res.status(500).send(err)
     })
   },
   checkLogin(req, res){
-    console.log('inside login controller', req.body);
-    parkmeDB.check(req.body)
+    console.log('inside login controller', req.body.userData);
+    parkmeDB.check(req.body.userData)
     .then(results => {
       res.json({
         message: 'loggin in',
@@ -25,15 +26,16 @@ module.exports = {
       })
     })
     .catch(err => {
+      console.log(err);
       res.status(500).send(err)
     })
   },
-  storeLocation(req, res){
+  updateLocation(req, res){
     console.log('inside location controller', req.body);
-    parkmeDB.location(req.body)
+    parkmeDB.updateLocation(req.body)
     .then(results => {
       res.json({
-          message: 'stored',
+          message: 'updated',
           data: results
       })
     })

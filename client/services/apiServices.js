@@ -8,8 +8,7 @@ Services.createUser = (userData) => {
     method: 'POST',
     url: 'http://localhost:3001/api/users',
     data: {
-      username: userData.username,
-      password: userData.password
+      userData
     }
   })
 }
@@ -20,23 +19,24 @@ Services.checkLogin = (userData) => {
     method: "POST",
     url: "http://localhost:3001/api/userLogin",
     data: {
-      username: userData.username,
-      password: userData.password
+      userData
     }
   })
 }
 
-Services.storeLocation = (userLocation) => {
-  return axios({
-    method: 'POST',
-    url: 'http://localhost:3001/api/userlocation',
+Services.updateLocation = (userData) => {
+  console.log('inside services for updatign location', userData);
+  return axios ({
+    method: "PUT",
+    url: 'http://localhost:3001/api/updateLocation',
     data : {
-      longitude: userLocation.longitude,
-      latitude: userLocation.latitude,
-      accuracy: userLocation.accuracy,
-      user_id: userLocation.user_id
+      username: userData.username,
+      longitude: userData.longitude,
+      latitude: userData.latitude,
+      accuracy: userData.accuracy
     }
   })
 }
+
 
 export default Services

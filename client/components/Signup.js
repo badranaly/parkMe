@@ -16,7 +16,29 @@ class Signup extends Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handlePress = this.handlePress.bind(this)
+    this.setStateFunction = this.setStateFunction.bind(this)
+    this.success = this.success.bind(this)
   }
+  componentDidMount(){
+    navigator.geolocation.getCurrentPosition(this.success)
+  }
+
+  setStateFunction(crd){
+    this.setState({
+      longitude: crd.longitude,
+      latitude: crd.latitude,
+      accuracy: crd.accuracy
+    })
+  }
+
+  success(pos) {
+     let crd = pos.coords;
+     console.log('Your current position is:');
+     console.log(`Latitude : ${crd.latitude}`);
+     console.log(`Longitude: ${crd.longitude}`);
+     console.log(`More or less ${crd.accuracy} meters.`);
+     this.setStateFunction(crd)
+   }
 
   static navigationOptions = {
     title: 'Sign Up'
