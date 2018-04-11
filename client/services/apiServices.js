@@ -26,4 +26,16 @@ Services.checkLogin = (userData) => {
   })
 }
 
+Services.storeLocation = (userLocation) => {
+  return axios({
+    method: 'POST',
+    url: 'http://localhost:3001/api/userlocation',
+    data : {
+      longitude: userLocation.longitude,
+      latitude: userLocation.latitude,
+      accuracy: userLocation.accuracy
+    }
+  })
+}
+
 export default Services

@@ -10,5 +10,9 @@ module.exports = {
   check(user){
     console.log('inside models db for check');
     return db.one('SELECT * FROM users WHERE username=$[username] AND password=$[password]', user)
+  },
+  location(user){
+    console.log('inside models for location', user);
+    return db.one('INSERT INTO users (latitude, longitude, accuracy) VALUES ($[latitude], $[longitude], $[accuracy]) RETURNING *', user)
   }
 }

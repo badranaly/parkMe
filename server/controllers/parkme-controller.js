@@ -27,5 +27,18 @@ module.exports = {
     .catch(err => {
       res.status(500).send(err)
     })
+  },
+  storeLocation(req, res){
+    console.log('inside location controller', req.body);
+    parkmeDB.location(req.body)
+    .then(results => {
+      res.json({
+          message: 'stored',
+          data: results
+      })
+    })
+    .catch(err => {
+      res.status(500).send(err)
+    })
   }
 }

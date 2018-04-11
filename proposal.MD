@@ -17,7 +17,7 @@ User stories:
       - will be provided a map with other users location as they head to the spot
       - will have some kind of reward(TBD) for letting other users know they left the spot.
 
-Technologies: ReactNative on Rails
+Technologies: ReactNative on NodeJS
 
 WireFrames: WireFrames Folder.
 
