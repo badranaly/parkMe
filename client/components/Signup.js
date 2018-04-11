@@ -12,6 +12,8 @@ class Signup extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+
+
   handleSubmit(){
     const {navigate} = this.props.navigation
     console.log('this is my username -->', this.state.username);
