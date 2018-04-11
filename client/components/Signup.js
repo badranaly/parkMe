@@ -9,7 +9,10 @@ class Signup extends Component {
     super(props)
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      longitude: '',
+      latitude: '',
+      accuracy: ''
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handlePress = this.handlePress.bind(this)

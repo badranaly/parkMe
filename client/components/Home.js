@@ -8,41 +8,45 @@ export default class Home extends Component {
   constructor(props){
     super(props)
     this.state = {
-      longitude: null,
-      latitude: null,
-      accuracy: null
+      //user_id: this.props.user_id
+      user_id: 4,
+      longitude: "",
+      latitude: "",
+      accuracy: ""
     }
     this.storeLocation = this.storeLocation.bind(this)
-    // this.success = this.success.bind(this)
-    // this.error = this.error.bind(this)
+    this.setStateFunction = this.setStateFunction.bind(this)
+    this.success = this.success.bind(this)
+    // // this.error = this.error.bind(this)
     // this.options = this.options.bind(this)
   }
 
   componentDidMount(){
-    let options = {
-      enableHighAccuracy: true,
-      timeout: 5000,
-      maximumAge: 0
-    };
-
-    let x = navigator.geolocation.getCurrentPosition(this.success,this.error,this.options)
-
-    console.log('users location', x);
+    navigator.geolocation.getCurrentPosition(this.success)
+    .then(result => {
+      console.log("I am the result", result);
+    })
+    .catch(err => {
+      console.log("I am the error", err);
+    })
   }
 
-  success(pos) {
+ success(pos) {
     let crd = pos.coords;
-    this.setState({
-      longitude: parseInt(crd.longitude),
-      latitude: parseInt(crd.latitude),
-      accuracy: parseInt(crd.accuracy)
-    }, () => this.storeLocation())
-
-    // console.log('Your current position is:');
-    // console.log(`Latitude : ${crd.latitude}`);
-    // console.log(`Longitude: ${crd.longitude}`);
-    // console.log(`More or less ${crd.accuracy} meters.`);
+    console.log('Your current position is:');
+    console.log(`Latitude : ${crd.latitude}`);
+    console.log(`Longitude: ${crd.longitude}`);
+    console.log(`More or less ${crd.accuracy} meters.`);
+    this.setStateFunction(crd)
     //contributed by Ryan
+  }
+
+  setStateFunction(crd){
+    this.setState({
+      longitude: crd.longitude,
+      latitude: crd.latitude,
+      accuracy: crd.accuracy
+    }, () => this.storeLocation())
   }
 
   storeLocation(){

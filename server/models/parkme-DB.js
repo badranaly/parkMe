@@ -13,6 +13,6 @@ module.exports = {
   },
   location(user){
     console.log('inside models for location', user);
-    return db.one('INSERT INTO users (latitude, longitude, accuracy) VALUES ($[latitude], $[longitude], $[accuracy]) RETURNING *', user)
+    return db.one('UPDATE users SET latitude = $[latitude], longitude=$[longitude], accuracy=$[accuracy] WHERE id = $[user_id] RETURNING *', user)
   }
 }

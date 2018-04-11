@@ -6,7 +6,7 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   username VARCHAR(255) UNIQUE,
   password VARCHAR(255),
-  longitude INTEGER,
-  latitude INTEGER,
-  accuracy INTEGER
+  longitude double precision,
+  latitude double precision,
+  accuracy double precision
 );

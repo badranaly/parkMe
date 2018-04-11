@@ -33,7 +33,8 @@ Services.storeLocation = (userLocation) => {
     data : {
       longitude: userLocation.longitude,
       latitude: userLocation.latitude,
-      accuracy: userLocation.accuracy
+      accuracy: userLocation.accuracy,
+      user_id: userLocation.user_id
     }
   })
 }
