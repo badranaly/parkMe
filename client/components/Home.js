@@ -1,21 +1,19 @@
 import React, {Component} from 'react'
-import {Text, View, TouchableHighlight} from 'react-native'
+import {Text, View,Button, TouchableHighlight} from 'react-native'
 import {StackNavigator} from 'react-navigation'
 
 export default class Home extends Component {
-  
+
   static navigationOptions = {
     title: 'parkMe',
-    headerLeft: null
+    headerLeft: null,
   }
 
   render(){
     const {navigate} = this.props.navigation
     return (
       <View>
-        <TouchableHighlight>
-            <Text>Welcome to My APP</Text>
-          </TouchableHighlight>
+            <Text style={{marginLeft: 100,marginTop:50,fontSize:20}}>Welcome to My APP</Text>
       </View>
     )
   }
