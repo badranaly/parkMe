@@ -6,7 +6,10 @@ module.exports = {
     console.log('inside controller', req.body);
     parkmeDB.create(req.body)
     .then(results => {
-        console.log('inserted successfully')
+      res.json({
+        message: 'ok',
+        data: results
+      })
     })
     .catch(err => {
       res.status(500).send(err)

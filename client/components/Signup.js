@@ -13,11 +13,13 @@ class Signup extends Component {
   }
 
   handleSubmit(){
+    const {navigate} = this.props.navigation
     console.log('this is my username -->', this.state.username);
     console.log('this is my passwird -->', this.state.password);
     Services.createUser(this.state)
     .then(results => {
-      console.log('user created');
+      console.log('user created', results);
+      navigate("HomeScreen")
     })
     .catch(err => console.log('got an error', err))
   }

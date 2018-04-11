@@ -5,21 +5,13 @@
  */
 
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import {StackNavigator} from 'react-navigation'
 import Signup from './components/Signup'
+import Home from './components/Home'
 
+const App = StackNavigator({
+  SignupScreen: { screen: Signup},
+  HomeScreen: { screen: Home}
+})
 
-export default class App extends Component<Props> {
-  render() {
-    return (
-      <View>
-        <Signup />
-      </View>
-    );
-  }
-}
+export default App
