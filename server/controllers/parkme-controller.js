@@ -43,5 +43,17 @@ module.exports = {
       console.log(err);
       res.status(500).send(err)
     })
+  },
+  lookForLeaving(req, res){
+    console.log('inside update status', req.body);
   }
+  //   parkmeDB.updateStatus(req.body)
+  //   .then(results => {
+  //     console.log(results);
+  //   })
+  //   .catch(err => {
+  //     console.log(err);
+  //     res.status(500).send(err)
+  //   })
+  // }
 }

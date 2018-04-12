@@ -8,5 +8,8 @@ CREATE TABLE users (
   password VARCHAR(255),
   longitude double precision,
   latitude double precision,
-  accuracy double precision
+  accuracy double precision,
+  looking BOOLEAN,
+  leaving BOOLEAN,
+  user_id INTEGER
 );

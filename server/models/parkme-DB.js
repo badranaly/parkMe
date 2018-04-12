@@ -9,10 +9,15 @@ module.exports = {
 },
   check(user){
     console.log('inside models db for check');
-    return db.one('SELECT * FROM users WHERE username=$[username] AND password=$[password]', user)
+    return db.one('SELECT * FROM users WHERE username=$[username] AND password=$[password]', user);
   },
   updateLocation(user){
     console.log('inside models for update location', user);
-    return db.one('UPDATE users SET (longitude = $[longitude], latitude = $[latitude], accuracy = $[accuracy]) WHERE username = $[username] RETURNING *', user)
+    return db.one(`UPDATE users SET
+                    longitude = $[longitude],
+                    latitude = $[latitude],
+                    accuracy = $[accuracy]
+                    WHERE username = $[username]
+                    RETURNING *;`, user);
   }
 }

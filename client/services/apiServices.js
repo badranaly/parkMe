@@ -27,13 +27,24 @@ Services.checkLogin = (userData) => {
 Services.updateLocation = (userData) => {
   console.log('inside services for updatign location', userData);
   return axios ({
-    method: "PUT",
+    method: "PATCH",
     url: 'http://localhost:3001/api/updateLocation',
     data : {
       username: userData.username,
       longitude: userData.longitude,
       latitude: userData.latitude,
       accuracy: userData.accuracy
+    }
+  })
+}
+
+Services.lookForLeaving = (userData) => {
+  console.log('inside services for looking for leaving cars', userData);
+  return axios ({
+    method: 'PATCH',
+    url: 'http://localhost:3001/api/lookForLeaving',
+    data: {
+      userData
     }
   })
 }
