@@ -45,15 +45,31 @@ module.exports = {
     })
   },
   lookForLeaving(req, res){
-    console.log('inside update status', req.body);
+    console.log('inside update status', req.body.results);
+    parkmeDB.lookingForLeaving()
+    .then(results => {
+      console.log(results);
+      // res.locals = results;
+      res.json({
+        message: "ok",
+        data: results
+      })
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(err)
+    })
+  },
+  setStatus(req, res, next){
+    console.log('updated setstatus controller', req.body.userData.results.results);
+    parkmeDB.setStatus(req.body.userData.results.results)
+    .then(results => {
+      console.log('results of updated status', results);
+      next()
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(err)
+    })
   }
-  //   parkmeDB.updateStatus(req.body)
-  //   .then(results => {
-  //     console.log(results);
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //     res.status(500).send(err)
-  //   })
-  // }
 }

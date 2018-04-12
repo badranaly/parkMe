@@ -19,5 +19,15 @@ module.exports = {
                     accuracy = $[accuracy]
                     WHERE username = $[username]
                     RETURNING *;`, user);
+  },
+  lookingForLeaving(){
+    console.log('inside update status model');
+    return db.one(`SELECT * FROM users WHERE leaving=true`);
+  },
+  setStatus(user){
+    return db.one(`UPDATE users SET
+                   looking=$[looking]
+                   WHERE id=$[id]
+                   RETURNING *`, user)
   }
 }

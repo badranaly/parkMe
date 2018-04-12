@@ -10,10 +10,20 @@ import Signup from './components/Signup'
 import Home from './components/Home'
 import Login from './components/Login'
 
+const mapNavigationStateParamstoProps = (SomeComponent) => {
+  return class extends React.Component {
+    static navigationOptions = SomeComponent.navigationOptions
+    render(){
+      const {navigation: {state: {params}}} = this.props;
+      return <SomeComponent {...params} {...this.props} />
+    }
+  }
+}
+
 const App = StackNavigator({
   SignupScreen: { screen: Signup},
   LoginScreen: { screen: Login},
-  HomeScreen: { screen: Home}
+  HomeScreen: { screen: mapNavigationStateParamstoProps(Home)}
 })
 
 export default App

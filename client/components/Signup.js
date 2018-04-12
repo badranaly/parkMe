@@ -12,7 +12,8 @@ class Signup extends Component {
       password: '',
       longitude: '',
       latitude: '',
-      accuracy: ''
+      accuracy: '',
+      results: null
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handlePress = this.handlePress.bind(this)
@@ -27,7 +28,7 @@ class Signup extends Component {
     this.setState({
       longitude: crd.longitude,
       latitude: crd.latitude,
-      accuracy: crd.accuracy
+      accuracy: crd.accuracy,
     })
   }
 
@@ -50,8 +51,9 @@ class Signup extends Component {
     console.log('this is my password -->', this.state.password);
     Services.createUser(this.state)
     .then(results => {
-      console.log('user created', results);
-      navigate("HomeScreen")
+      this.setState({
+        results: results.data.data
+      }, () => navigate("HomeScreen", this.state))
     })
     .catch(err => console.log('got an error', err))
   }
@@ -62,7 +64,6 @@ class Signup extends Component {
   }
 
   render(){
-    console.log('hi');
     return(
       <View>
       <TextInput

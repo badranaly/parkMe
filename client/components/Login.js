@@ -11,7 +11,8 @@ export default class Login extends Component{
       password: '',
       longitude: "",
       latitude: "",
-      accuracy: ""
+      accuracy: "",
+      results: null
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.setStateFunction = this.setStateFunction.bind(this)
@@ -48,8 +49,10 @@ export default class Login extends Component{
     console.log('username -->', this.state.username);
     console.log('password -->', this.state.password);
     Services.checkLogin(this.state)
-    .then(results =>{
-      navigate("HomeScreen")
+    .then(results => {
+      this.setState({
+        results: results.data.data
+      }, () => navigate("HomeScreen", this.state))
     })
     .then(result => {
       console.log('one');
