@@ -44,9 +44,9 @@ module.exports = {
       res.status(500).send(err)
     })
   },
-  lookForLeaving(req, res){
+  lookingForSpot(req, res){
     console.log('inside update status', req.body.results);
-    parkmeDB.lookingForLeaving()
+    parkmeDB.lookingForSpot()
     .then(results => {
       console.log(results);
       // res.locals = results;

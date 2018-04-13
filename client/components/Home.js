@@ -26,12 +26,12 @@ export default class Home extends Component {
     console.log('inside looking');
     this.setState({
       looking: true
-    }, () => this.lookForLeaving())
+    }, () => this.lookingForSpot())
   }
 
-  lookForLeaving(){
+  lookingForSpot(){
     console.log('inside look for leaving', this.state.looking);
-    Services.lookForLeaving(this.state)
+    Services.lookingForSpot(this.state)
     .then(results => {
       console.log('these are my lookingForLeaving results', results);
       this.Alert()
@@ -43,6 +43,9 @@ export default class Home extends Component {
 
   handleLeaving(){
     console.log('inside leaving');
+    this.setState({
+      leaving: false
+    }, () => this.leavingSpot())
   }
   Alert(){
   Alert.alert(

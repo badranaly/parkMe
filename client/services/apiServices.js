@@ -38,11 +38,11 @@ Services.updateLocation = (userData) => {
   })
 }
 
-Services.lookForLeaving = (userData) => {
+Services.lookingForSpot = (userData) => {
   console.log('inside services for looking for leaving cars', userData);
   return axios ({
     method: 'PATCH',
-    url: 'http://localhost:3001/api/lookForLeaving',
+    url: 'http://localhost:3001/api/searching',
     data: {
       userData
     }

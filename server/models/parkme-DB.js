@@ -20,7 +20,7 @@ module.exports = {
                     WHERE username = $[username]
                     RETURNING *;`, user);
   },
-  lookingForLeaving(){
+  lookingForSpot(){
     console.log('inside update status model');
     return db.one(`SELECT * FROM users WHERE leaving=true`);
   },
