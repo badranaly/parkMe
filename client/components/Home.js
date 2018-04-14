@@ -27,22 +27,15 @@ export default class Home extends Component {
     console.log('inside looking');
     this.setState({
       looking: true
-    }, () => this.lookingForSpot())
+    }, () => this.renderSearching())
   }
 
-  lookingForSpot(){
-    const { navigate } = this.props.navigation
-    console.log('inside look for leaving', this.state.looking);
-    Services.lookingForSpot(this.state)
-    .then(results => {
-      console.log('these are my lookingForLeaving results', results);
-      navigate("SearchScreen")
-    })
-    .catch(err => {
-      console.log(err);
-    })
+  renderSearching(){
+    console.log('inside render search');
+    const {navigate} = this.props.navigation
+    navigate("SearchScreen", this.state)
   }
-
+  
   handleLeaving(){
     console.log('inside leaving');
     this.setState({

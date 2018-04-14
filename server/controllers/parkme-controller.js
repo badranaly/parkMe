@@ -73,8 +73,8 @@ module.exports = {
     })
   },
   setLeavingStatus(req, res, next){
-    console.log('inside set leaving', req.body.userData);
-    parkmeDB.setLeavingStatus(req.body.userData)
+    console.log('inside set leaving', req.body.userData.apiData);
+    parkmeDB.setLeavingStatus(req.body.userData.apiData)
     .then(results => {
       console.log('results of updated leaving status', results);
       res.json({

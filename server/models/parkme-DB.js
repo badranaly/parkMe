@@ -36,7 +36,7 @@ module.exports = {
     return db.any(`UPDATE users SET
                    looking=$1
                    WHERE id=$2
-                   RETURNING *`, [user.looking, user.results.results.id]);
+                   RETURNING *`, [user.apiData.looking, user.apiData.results.results.id]);
   },
 
   setLeavingStatus(user){
