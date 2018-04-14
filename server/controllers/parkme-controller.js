@@ -3,7 +3,7 @@ const parkmeDB = require('../models/parkme-DB');
 
 module.exports = {
   createUser(req, res){
-    console.log('inside controller', req.body.userData);
+    // console.log('inside controller', req.body.userData);
     parkmeDB.create(req.body.userData)
     .then(results => {
       res.json({
@@ -17,7 +17,7 @@ module.exports = {
     })
   },
   checkLogin(req, res){
-    console.log('inside login controller', req.body.userData);
+    // console.log('inside login controller', req.body.userData);
     parkmeDB.check(req.body.userData)
     .then(results => {
       res.json({
@@ -31,7 +31,7 @@ module.exports = {
     })
   },
   updateLocation(req, res){
-    console.log('inside location controller', req.body);
+    // console.log('inside location controller', req.body);
     parkmeDB.updateLocation(req.body)
     .then(results => {
       res.json({
@@ -45,7 +45,7 @@ module.exports = {
     })
   },
   lookingForSpot(req, res){
-    console.log('inside update status', req.body.results);
+    // console.log('inside update status', req.body.results);
     parkmeDB.lookingForSpot()
     .then(results => {
       console.log(results);
@@ -60,9 +60,9 @@ module.exports = {
       res.status(500).send(err)
     })
   },
-  setStatus(req, res, next){
-    console.log('updated setstatus controller', req.body.userData.results.results);
-    parkmeDB.setStatus(req.body.userData.results.results)
+  setLookingStatus(req, res, next){
+    console.log('updated setstatus controller', req.body.userData);
+    parkmeDB.setLookingStatus(req.body.userData)
     .then(results => {
       console.log('results of updated status', results);
       next()
@@ -71,5 +71,24 @@ module.exports = {
       console.log(err);
       res.status(500).send(err)
     })
+  },
+  setLeavingStatus(req, res, next){
+    console.log('inside set leaving', req.body.userData);
+    parkmeDB.setLeavingStatus(req.body.userData)
+    .then(results => {
+      console.log('results of updated leaving status', results);
+      res.json({
+        message: 'ok',
+        data: results
+      })
+      next()
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(err)
+    })
+  },
+  leavingSpot(req, res){
+    console.log('inside leaving spot controller', req.body);
   }
 }

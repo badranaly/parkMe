@@ -14,6 +14,7 @@ export default class Home extends Component {
     }
     this.handleLooking = this.handleLooking.bind(this)
     this.handleLeaving = this.handleLeaving.bind(this)
+    this.leavingSpot = this.leavingSpot.bind(this)
 
   }
 
@@ -30,11 +31,12 @@ export default class Home extends Component {
   }
 
   lookingForSpot(){
+    const { navigate } = this.props.navigation
     console.log('inside look for leaving', this.state.looking);
     Services.lookingForSpot(this.state)
     .then(results => {
       console.log('these are my lookingForLeaving results', results);
-      this.Alert()
+      navigate("SearchScreen")
     })
     .catch(err => {
       console.log(err);
@@ -44,9 +46,22 @@ export default class Home extends Component {
   handleLeaving(){
     console.log('inside leaving');
     this.setState({
-      leaving: false
+      leaving: true
     }, () => this.leavingSpot())
   }
+
+  leavingSpot(){
+    console.log('inside leavingSpot function', this.state.leaving);
+    Services.leavingSpot(this.state)
+    .then(results => {
+      console.log('these are my leaving spot results', results);
+      this.Alert()
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
   Alert(){
   Alert.alert(
     'We found someone leaving nearby!',
@@ -62,6 +77,7 @@ export default class Home extends Component {
   static navigationOptions = {
     title: 'parkMe',
     headerLeft: null,
+    gesturesEnabled: false
   }
 
   render(){

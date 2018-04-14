@@ -42,7 +42,18 @@ Services.lookingForSpot = (userData) => {
   console.log('inside services for looking for leaving cars', userData);
   return axios ({
     method: 'PATCH',
-    url: 'http://localhost:3001/api/searching',
+    url: 'http://localhost:3001/api/looking',
+    data: {
+      userData
+    }
+  })
+}
+
+Services.leavingSpot = (userData) => {
+  console.log('inside services for leaving spots', userData);
+  return axios({
+    method: 'PATCH',
+    url: 'http://localhost:3001/api/leaving',
     data: {
       userData
     }
