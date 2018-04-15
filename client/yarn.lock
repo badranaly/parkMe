@@ -4418,6 +4418,14 @@ react-native-safe-area-view@^0.7.0:
   dependencies:
     hoist-non-react-statics "^2.3.1"
 
+react-native-slide-button@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-slide-button/-/react-native-slide-button-1.2.1.tgz#7556a1d1b706996463f7acf70ccf5a98097c1622"
+
+react-native-slider-button@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-slider-button/-/react-native-slider-button-0.1.1.tgz#2ed2aab2c0375dda89bb71de8feafb647b036e68"
+
 "react-native-tab-view@github:react-navigation/react-native-tab-view":
   version "0.0.74"
   resolved "https://codeload.github.com/react-navigation/react-native-tab-view/tar.gz/36ebd834d78b841fc19778c966465d02fd1213bb"
@@ -4808,6 +4816,10 @@ rimraf@2, rimraf@^2.5.1, rimraf@^2.5.4, rimraf@^2.6.1:
 rimraf@~2.2.6:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
+
+rn-sliding-button@^1.1.5:
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/rn-sliding-button/-/rn-sliding-button-1.1.5.tgz#4cf6764bbbfc5aae46e04fe9cd3f021f6b25250b"
 
 run-async@^2.2.0:
   version "2.3.0"

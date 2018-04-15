@@ -23,10 +23,10 @@ const mapNavigationStateParamstoProps = (SomeComponent) => {
 }
 
 const App = StackNavigator({
-  SignupScreen: { screen: Signup},
-  LoginScreen: { screen: Login},
-  HomeScreen: { screen: mapNavigationStateParamstoProps(Home)},
-  SearchScreen: { screen : mapNavigationStateParamstoProps(Searching)},
+  // SignupScreen: { screen: Signup},
+  // LoginScreen: { screen: Login},
+  // HomeScreen: { screen: mapNavigationStateParamstoProps(Home)},
+  // SearchScreen: { screen : mapNavigationStateParamstoProps(Searching)},
   MapScreen : { screen: mapNavigationStateParamstoProps(ParkingMap)}
 })
 

@@ -11,8 +11,11 @@
     "react": "16.3.1",
     "react-native": "0.55.2",
     "react-native-maps": "^0.21.0",
+    "react-native-slide-button": "^1.2.1",
+    "react-native-slider-button": "^0.1.1",
     "react-native-video": "^2.0.0",
-    "react-navigation": "^1.5.11"
+    "react-navigation": "^1.5.11",
+    "rn-sliding-button": "^1.1.5"
   },
   "devDependencies": {
     "babel-jest": "22.4.3",

@@ -13,3 +13,8 @@ CREATE TABLE users (
   leaving BOOLEAN,
   user_id INTEGER
 );
+
+CREATE TABLE match (
+  looking_id INTEGER,
+  leaving_id INTEGER
+)
