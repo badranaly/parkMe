@@ -11,7 +11,9 @@ export default class sandbox extends Component {
     super(props)
     this.state = {
       latitude: '37.78825',
-      longitude: '-122.4324'
+      longitude: '-122.4324',
+      userLooking: this.props.userLooking,
+      userLeaving: this.props.userLeaving
     }
     this.mapView = null
   }
@@ -21,6 +23,7 @@ export default class sandbox extends Component {
   }
 
   componentDidMount() {
+    console.log('this is my parking map props', this.state);
        var newRegion = {
             latitude: 37.78825,
             longitude: -122.4324,

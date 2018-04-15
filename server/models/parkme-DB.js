@@ -28,15 +28,15 @@ module.exports = {
 
   lookingForSpot(){
     console.log('inside update status model');
-    return db.any(`SELECT * FROM users WHERE leaving=true`);
+    return db.any(`SELECT * FROM users WHERE leaving=true `);
   },
 
   setLookingStatus(user){
-    console.log('inside setting looking status model', user);
+    console.log('inside setting looking status model', user.userLooking);
     return db.any(`UPDATE users SET
                    looking=$1
                    WHERE id=$2
-                   RETURNING *`, [user.apiData.looking, user.apiData.results.results.id]);
+                   RETURNING *`, [user.userLooking.looking, user.userLooking.results.results.id]);
   },
 
   setLeavingStatus(user){
@@ -45,6 +45,6 @@ module.exports = {
     return db.one(`UPDATE users SET
                    leaving=$1
                    where id=$2
-                   RETURNING *`,[user.leaving,user.results.results.id])
+                   RETURNING *`,[user.leaving, user.results.results.id])
   }
 }

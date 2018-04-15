@@ -10,8 +10,7 @@ CREATE TABLE users (
   latitude double precision,
   accuracy double precision,
   looking BOOLEAN,
-  leaving BOOLEAN,
-  user_id INTEGER
+  leaving BOOLEAN
 );
 
 CREATE TABLE match (

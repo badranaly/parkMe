@@ -8,7 +8,8 @@ export default class Searching extends Component {
   constructor(props){
     super(props)
     this.state = {
-        apiData: this.props
+        userLooking: this.props,
+        userLeaving: this.props
     }
     this.lookingForSpot = this.lookingForSpot.bind(this)
   }
@@ -18,13 +19,20 @@ export default class Searching extends Component {
     gesturesEnabled: false
   }
 
+  componentDidMount(){
+    this.lookingForSpot()
+  }
+
   lookingForSpot(){
     const { navigate } = this.props.navigation
-    console.log('inside look for leaving', this.state.looking);
+    console.log('inside look for leaving', this.state);
     Services.lookingForSpot(this.state)
     .then(results => {
-      console.log('these are my lookingForLeaving results', results);
+      console.log('these are my lookingForLeaving results', results.data);
       this.Alert()
+      this.setState({
+        userLeaving: results.data.data[0]
+      })
     })
     .catch(err => {
       console.log(err);
@@ -48,18 +56,16 @@ export default class Searching extends Component {
 }
 
   render(){
-    this.lookingForSpot()
     return(
         <View>
           {console.log('these are my props', this.props)}
           <Image
             style={{position: 'absolute', height:800}}
             resizeMode='cover'
-            source={require('./cars.jpg')}
-            blurRadius={1}
+            source={require('./images/cars.jpg')}
           />
           <Image
-            source={require('./loading.gif')}
+            source={require('./images/loading.gif')}
             style={{marginLeft: 120, marginTop: 170}}
 
            />
