@@ -16,6 +16,7 @@ export default class sandbox extends Component {
       userLeaving: this.props.userLeaving
     }
     this.mapView = null
+    this.onSlideRight = this.onSlideRight.bind(this)
   }
 
   static navigationOptions = {
@@ -35,6 +36,8 @@ export default class sandbox extends Component {
 
   onSlideRight(){
     console.log('i swiped right');
+    const {navigate} = this.props.navigation
+    navigate("ParkedScreen", this.state)
 
   }
 

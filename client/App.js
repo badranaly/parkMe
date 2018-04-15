@@ -11,6 +11,7 @@ import Home from './components/Home'
 import Login from './components/Login'
 import Searching from './components/Searching'
 import ParkingMap from './components/ParkingMap'
+import Parked from './components/Parked'
 
 const mapNavigationStateParamstoProps = (SomeComponent) => {
   return class extends React.Component {
@@ -27,7 +28,8 @@ const App = StackNavigator({
   LoginScreen: { screen: Login},
   HomeScreen: { screen: mapNavigationStateParamstoProps(Home)},
   SearchScreen: { screen : mapNavigationStateParamstoProps(Searching)},
-  MapScreen : { screen: mapNavigationStateParamstoProps(ParkingMap)}
+  MapScreen : { screen: mapNavigationStateParamstoProps(ParkingMap)},
+  ParkedScreen : { screen: mapNavigationStateParamstoProps(Parked)}
 })
 
 export default App
