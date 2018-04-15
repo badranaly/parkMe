@@ -60,5 +60,14 @@ Services.leavingSpot = (userData) => {
   })
 }
 
+Services.reset = (userData) => {
+  console.log('inside services to reset', userData)
+  return axios({
+    method: "POST",
+    url: 'http://localhost:3001/api/reset',
+    data: userData
+  })
+}
+
 
 export default Services

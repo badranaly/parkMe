@@ -90,5 +90,8 @@ module.exports = {
   },
   leavingSpot(req, res){
     console.log('inside leaving spot controller', req.body);
+  },
+  resetStatus(req, res){
+    console.log('inside reset status')
   }
 }

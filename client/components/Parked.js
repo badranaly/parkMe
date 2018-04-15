@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {View, Text} from 'react-native'
+import Services from '../services/apiServices'
 
 export default class Parked extends Component {
   constructor(props){
@@ -17,6 +18,13 @@ export default class Parked extends Component {
 
   componentDidMount(){
     console.log('this is final page props', this.state);
+    Services.reset(this.state)
+    .then(results => {
+      console.log('results');
+    })
+    .catch(err => {
+      console.log(err);
+    })
   }
   render(){
     return(

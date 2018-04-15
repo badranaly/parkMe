@@ -6,6 +6,7 @@ router.post('/userLogin', parkmeController.checkLogin)
 router.patch('/updateLocation', parkmeController.updateLocation)
 router.patch('/looking', parkmeController.setLookingStatus, parkmeController.lookingForSpot)
 router.patch('/leaving', parkmeController.setLeavingStatus, parkmeController.leavingSpot)
+router.post('/reset', parkmeController.resetStatus)
 
 
 module.exports = router
