@@ -31,6 +31,11 @@ module.exports = {
     return db.any(`SELECT * FROM users WHERE leaving=true `);
   },
 
+  leavingSpot(){
+    console.log('inside leaving spot inside model');
+    return db.many(`SELECT pg_sleep(10); SELECT * FROM users WHERE looking=true`)
+  },
+
   setLookingStatus(user){
     console.log('inside setting looking status model', user.userLooking);
     return db.any(`UPDATE users SET
@@ -40,11 +45,23 @@ module.exports = {
   },
 
   setLeavingStatus(user){
-    console.log('inside models set leaving', user.results.results);
-    console.log('inside models set for id', user.results);
+    console.log('inside models set leaving', user.userLeaving);
+    // console.log('inside models set for id', user);
     return db.one(`UPDATE users SET
                    leaving=$1
                    where id=$2
-                   RETURNING *`,[user.leaving, user.results.results.id])
+                   RETURNING *`,[user.userLeaving.leaving, user.userLeaving.results.results.id])
+  },
+  reset(user){
+    console.log('inside models for RESET leaving id', user.userLeaving.id);
+    console.log('inside models for RESET leaving id', user.userLooking.results.results.id);
+
+    return db.any(`UPDATE users SET
+                   looking=false,
+                   leaving=false
+                   WHERE id IN ($1, $2) RETURNING *`,[user.userLeaving.id, user.userLooking.results.results.id])
   }
+  // resetUserLooking(user){
+  //
+  // }
 }

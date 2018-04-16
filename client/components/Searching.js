@@ -20,7 +20,11 @@ export default class Searching extends Component {
   }
 
   componentDidMount(){
-    this.lookingForSpot()
+    console.log('these are my searching props', this.props);
+    this.props.leaving  ? this.leavingSpot() : '';
+    this.props.looking ? this.lookingForSpot() : '';
+    // this.lookingForSpot()
+    // this.leavingSpot()
   }
 
   lookingForSpot(){
@@ -39,6 +43,21 @@ export default class Searching extends Component {
     })
   }
 
+  leavingSpot(){
+    console.log('inside leavingSpot function', this.state.userLeaving);
+    Services.leavingSpot(this.state)
+    .then(results => {
+      console.log('these are my leaving spot results', results);
+      this.setState({
+        searchResults: results
+      })
+      this.Alert()
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
   renderMaps(){
     const {navigate } = this.props.navigation
     navigate("MapScreen", this.state)
@@ -46,6 +65,9 @@ export default class Searching extends Component {
 
   Alert(){
     Alert.alert(
+      this.state.userLeaving.leaving ?
+      'We found someone looking for a spot nearby!'
+      :
       'We found someone leaving nearby!',
       '',
       [

@@ -73,14 +73,11 @@ module.exports = {
     })
   },
   setLeavingStatus(req, res, next){
-    console.log('inside set leaving', req.body.userData.apiData);
-    parkmeDB.setLeavingStatus(req.body.userData.apiData)
+    console.log('inside set leaving', req.body.userData.userLeaving.leaving);
+    parkmeDB.setLeavingStatus(req.body.userData)
     .then(results => {
       console.log('results of updated leaving status', results);
-      res.json({
-        message: 'ok',
-        data: results
-      })
+      // res.locals = myresults
       next()
     })
     .catch(err => {
@@ -90,8 +87,31 @@ module.exports = {
   },
   leavingSpot(req, res){
     console.log('inside leaving spot controller', req.body);
+    parkmeDB.leavingSpot()
+    .then(results => {
+      res.json({
+        message: 'found someone',
+        data: results
+      })
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(err)
+    })
   },
   resetStatus(req, res){
-    console.log('inside reset status')
+    console.log('inside reset status', req.body)
+    parkmeDB.reset(req.body)
+    .then(results => {
+      console.log('results of reset booleans', results);
+      res.json({
+        message: 'we made it',
+        data: results
+      })
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(err)
+    })
   }
 }

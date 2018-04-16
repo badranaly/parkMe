@@ -14,7 +14,6 @@ export default class Home extends Component {
     }
     this.handleLooking = this.handleLooking.bind(this)
     this.handleLeaving = this.handleLeaving.bind(this)
-    this.leavingSpot = this.leavingSpot.bind(this)
 
   }
 
@@ -35,36 +34,14 @@ export default class Home extends Component {
     const {navigate} = this.props.navigation
     navigate("SearchScreen", this.state)
   }
-  
+
   handleLeaving(){
     console.log('inside leaving');
     this.setState({
       leaving: true
-    }, () => this.leavingSpot())
+    }, () => this.renderSearching())
   }
 
-  leavingSpot(){
-    console.log('inside leavingSpot function', this.state.leaving);
-    Services.leavingSpot(this.state)
-    .then(results => {
-      console.log('these are my leaving spot results', results);
-      this.Alert()
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  }
-
-  Alert(){
-  Alert.alert(
-    'We found someone leaving nearby!',
-    '',
-    [
-      {text: 'OK', onPress: () => console.log('OK Pressed')},
-    ],
-    { cancelable: false }
-  )
-}
 
 
   static navigationOptions = {

@@ -3,10 +3,10 @@
 INSERT INTO users (
   username, password, looking, leaving
 ) VALUES (
-  'Testing', 'testing',false,true
+  'Testing', 'testing',false,false
 );
 INSERT INTO users (
   username, password, looking, leaving
 ) VALUES (
-  'Tomtom', 'tomtom',true,false
+  'Tomtom', 'tomtom',false,false
 );

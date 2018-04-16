@@ -20,7 +20,7 @@ export default class Parked extends Component {
     console.log('this is final page props', this.state);
     Services.reset(this.state)
     .then(results => {
-      console.log('results');
+      console.log('final page results', results);
     })
     .catch(err => {
       console.log(err);
