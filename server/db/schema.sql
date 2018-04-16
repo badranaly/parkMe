@@ -12,8 +12,3 @@ CREATE TABLE users (
   looking BOOLEAN,
   leaving BOOLEAN
 );
-
-CREATE TABLE match (
-  looking_id INTEGER,
-  leaving_id INTEGER
-)
