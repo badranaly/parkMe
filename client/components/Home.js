@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import {Text, View,Button, TouchableHighlight, Alert} from 'react-native'
+import {Text, View,Button, TouchableHighlight, Alert, Dimensions} from 'react-native'
 import {StackNavigator} from 'react-navigation'
 import Services from '../services/apiServices'
+const width = Dimensions.get('window').width
 
 export default class Home extends Component {
 
@@ -10,7 +11,7 @@ export default class Home extends Component {
     this.state = {
       looking: null,
       leaving: null,
-      results: this.props
+      currentUser: this.props.results
     }
     this.handleLooking = this.handleLooking.bind(this)
     this.handleLeaving = this.handleLeaving.bind(this)
@@ -18,8 +19,8 @@ export default class Home extends Component {
   }
 
   componentDidMount(){
-    console.log('these are my props', this.props);
-
+    console.log('these are my props', this.props.results);
+    console.log('width of device', width);
   }
 
   handleLooking(){
@@ -43,7 +44,6 @@ export default class Home extends Component {
   }
 
 
-
   static navigationOptions = {
     title: 'parkMe',
     headerLeft: null,
@@ -55,9 +55,9 @@ export default class Home extends Component {
     return (
       <View>
 
-            <Text style={{marginLeft: 100,marginTop:50,fontSize:20, marginBottom: 40}}>Welcome to My APP</Text>
-            <Button style={{marginLeft: 100,marginTop:50,fontSize:20}} onPress={this.handleLooking} title='looking for parking' />
-            <Button style={{marginLeft: 100,marginTop:50,fontSize:20}} onPress={this.handleLeaving} title='leaving parking spot' />
+            <Text style={{textAlign: 'center',marginTop:50,fontSize:20, marginBottom: 40}}>Dashboard</Text>
+            <Button style={{textAlign: "center",marginTop:50,fontSize:20}} onPress={this.handleLooking} title='looking for parking' />
+            <Button style={{textAlign: "center",marginTop:50,fontSize:20}} onPress={this.handleLeaving} title='leaving parking spot' />
       </View>
     )
   }

@@ -6,8 +6,8 @@ export default class Parked extends Component {
   constructor(props){
     super(props)
     this.state = {
-      userLeaving: this.props.userLeaving,
-      userLooking: this.props.userLooking
+      searchResults: this.props.searchResults,
+      currentUser: this.props.currentUser
     }
   }
 

@@ -8,8 +8,9 @@ export default class Searching extends Component {
   constructor(props){
     super(props)
     this.state = {
-        userLooking: this.props,
-        userLeaving: this.props
+        userLooking: this.props.looking,
+        userLeaving: this.props.leaving,
+        currentUser: this.props.currentUser
     }
     this.lookingForSpot = this.lookingForSpot.bind(this)
   }
@@ -32,13 +33,15 @@ export default class Searching extends Component {
     console.log('inside look for leaving', this.state);
     Services.lookingForSpot(this.state)
     .then(results => {
-      console.log('these are my lookingForLeaving results', results.data);
-      this.Alert()
+      console.log('these are my lookingForLeaving results', results);
       this.setState({
-        userLeaving: results.data.data[0]
+        searchResults: results
       })
+      this.successAlert()
     })
     .catch(err => {
+      this.failedAlert()
+      console.log('we failed the search for a spot ');
       console.log(err);
     })
   }
@@ -51,24 +54,26 @@ export default class Searching extends Component {
       this.setState({
         searchResults: results
       })
-      this.Alert()
+      this.successAlert()
     })
     .catch(err => {
+      this.failedAlert()
       console.log(err);
     })
   }
 
   renderMaps(){
-    const {navigate } = this.props.navigation
-    navigate("MapScreen", this.state)
+    console.log('this is state inside rendermaps of searching component', this.props);
+    console.log('i made it to render maps', this.props);
+    this.props.navigation.navigate("MapScreen", this.state)
   }
 
-  Alert(){
+  successAlert(){
     Alert.alert(
-      this.state.userLeaving.leaving ?
-      'We found someone looking for a spot nearby!'
+      this.state.searchResults.data.data[0].leaving ?
+      'We found someone leaving nearby!'
       :
-      'We found someone leaving nearby!',
+      'We found someone looking for a spot nearby!',
       '',
       [
         {text: 'OK', onPress: () => this.renderMaps()},
@@ -76,11 +81,20 @@ export default class Searching extends Component {
       { cancelable: false }
     )
 }
+failedAlert(){
+  Alert.alert(
+    'We couldn\'t find anyone nearby :(',
+    '',
+    [
+      {text: 'OK', onPress: () => this.props.navigation.navigate("HomeScreen")},
+    ],
+    { cancelable: false }
+  )
+}
 
   render(){
     return(
         <View>
-          {console.log('these are my props', this.props)}
           <Image
             style={{position: 'absolute', height:800}}
             resizeMode='cover'

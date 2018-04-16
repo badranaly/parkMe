@@ -10,7 +10,10 @@ export default class sandbox extends Component {
   constructor(props){
     super(props)
     this.state = {
-      searchResults: this.props.searchResults
+      // userLooking: this.props.userLooking,
+      // userLeaving: this.props.userLeaving,
+      searchResults: this.props.searchResults,
+      currentUser: this.props.currentUser
     }
     this.mapView = null
     this.onSlideRight = this.onSlideRight.bind(this)
@@ -21,10 +24,10 @@ export default class sandbox extends Component {
   }
 
   componentDidMount() {
-    console.log('this is my search results map props', this.props.searchResults);
+    console.log('this is my search results map props', this.state);
        var newRegion = {
-            latitude: 37.78825,
-            longitude: -122.4324,
+            latitude: 37.785384,
+            longitude: -122.406417,
             latitudeDelta: 0.1,
             longitudeDelta: 0.1,
       };
@@ -34,7 +37,7 @@ export default class sandbox extends Component {
   onSlideRight(){
     console.log('i swiped right');
     const {navigate} = this.props.navigation
-    navigate("ParkedScreen", this.state)
+    navigate("HomeScreen")
 
   }
 
@@ -48,12 +51,12 @@ export default class sandbox extends Component {
           initialRegion={{
               latitude: 37.78825,
               longitude: -122.4324,
-              latitudeDelta: 0.0,
-              longitudeDelta: 0.0,
+              latitudeDelta: 0.0001,
+              longitudeDelta: 0.001,
           }}
         >
         <MapView.Marker.Animated
-            coordinate={{latitude: 37.78825, longitude: -122.4324}}
+            coordinate={{latitude: 37.78825, longitude: -122.406417}}
             title={"User"}
             description={"leaving my parking spot"}
          />
@@ -68,7 +71,7 @@ export default class sandbox extends Component {
               source={require('./images/slider.png')}
               style={styles.slider}
             />
-            <Text style={styles.text}>Swipe right to confirm you've parked</Text>
+            <Text style={styles.text}>{this.props.searchResults.data.data[0].leaving ? 'Swipe right to confirm you\'ve parked' : 'Swipe right to confirm they have parked'}</Text>
           </View>
         </RNSlidingButton>
     </View>
